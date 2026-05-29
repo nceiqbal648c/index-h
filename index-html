@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI.TravelAnywhere | Creator Studio</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { background-color: #000000; color: #ffffff; font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; min-height: 100vh; margin: 0; }
+        .top-corner-logo { position: absolute; top: 20px; left: 20px; width: 55px; height: 55px; border-radius: 50%; border: 2px solid #00ffff; box-shadow: 0 0 15px #00ffff; object-fit: cover; }
+        .container { text-align: center; width: 100%; max-width: 480px; margin-top: 60px; }
+        h2 { color: #00ffff; text-shadow: 0 0 20px rgba(0, 255, 255, 0.6); letter-spacing: 2px; margin-bottom: 5px; font-size: 28px; }
+        .creator-tag { font-size: 12px; color: #888; letter-spacing: 1px; margin-bottom: 25px; text-transform: uppercase; }
+        .creator-tag span { color: #00ffff; font-weight: bold; }
+        .panel { background: rgba(5, 5, 5, 0.8); border: 1px solid rgba(0, 255, 255, 0.2); border-radius: 20px; padding: 20px; margin-bottom: 20px; box-shadow: 0 0 15px rgba(0, 255, 255, 0.05); text-align: left; }
+        .panel-title { color: #00ffff; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; border-left: 3px solid #00ffff; padding-left: 10px; }
+        .input-box { width: 100%; padding: 12px 15px; border-radius: 12px; border: 1px solid #00ffff; background: rgba(0, 0, 0, 0.5); color: #fff; font-size: 14px; box-shadow: 0 0 10px rgba(0, 255, 255, 0.1); outline: none; margin-bottom: 10px; }
+        .neon-btn { width: 100%; padding: 12px; font-size: 14px; font-weight: bold; color: #000; background: #00ffff; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 0 15px #00ffff; transition: 0.3s; }
+        .neon-btn:hover { box-shadow: 0 0 25px #00ffff; transform: scale(1.01); }
+        .caption-output { background: rgba(255, 255, 255, 0.05); border: 1px dashed rgba(0, 255, 255, 0.3); border-radius: 10px; padding: 12px; font-size: 13px; color: #ddd; margin-top: 10px; position: relative; line-height: 1.4; }
+        .copy-btn { position: absolute; right: 10px; bottom: 10px; background: #00ffff; color: #000; border: none; padding: 3px 8px; font-size: 11px; font-weight: bold; border-radius: 5px; cursor: pointer; }
+        .file-label { display: block; text-align: center; padding: 15px; border: 2px dashed rgba(0, 255, 255, 0.4); border-radius: 12px; cursor: pointer; color: #aaa; font-size: 14px; margin-bottom: 10px; }
+        .file-label:hover { border-color: #00ffff; color: #fff; }
+        input[type="file"] { display: none; }
+    </style>
+</head>
+<body>
+    <img src="1000058577.png" class="top-corner-logo" alt="Logo">
+    <div class="container">
+        <h2>AI.TravelAnywhere</h2>
+        <div class="creator-tag">Developed by <span>Iqbal Ahmed</span> | @ia.travelanywhere</div>
+        <div class="panel">
+            <div class="panel-title">Global Media Downloader</div>
+            <input type="text" class="input-box" placeholder="Paste YouTube/Video Link Here...">
+            <button class="neon-btn">Download Media</button>
+        </div>
+        <div class="panel">
+            <div class="panel-title">Pillow Creative Hub (Image Studio)</div>
+            <label class="file-label" for="photo-input">📁 Upload Travel Photo for Neon-Filter</label>
+            <input type="file" id="photo-input">
+            <button class="neon-btn" style="background: transparent; color: #00ffff; border: 1px solid #00ffff; box-shadow: none;">Apply Cinematic Tone</button>
+        </div>
+        <div class="panel">
+            <div class="panel-title">Social Content Studio</div>
+            <button class="neon-btn" style="background: #101010; color: #00ffff; border: 1px solid #00ffff; box-shadow: none;">Generate Facebook Caption</button>
+            <div class="caption-output">
+                Solo road, global story. #AITravelAnywhere #Explorer #DhakaToWorld
+                <button class="copy-btn">COPY</button>
+            </div>
+        </div>
+        <button class="neon-btn" style="background: transparent; color: #00ffff; border: 2px solid #00ffff; margin-top: 10px; box-shadow: none; border-radius: 25px;">Install App</button>
+    </div>
+</body>
+</html>
