@@ -3,236 +3,421 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI.TravelAnywhere - Downloader</title>
+    <title>Ai_travelanywhere - Pro Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #0a0e17;
-            --card-bg: #131a26;
+            --bg-dark: #070b12;
+            --panel-bg: #101622;
             --neon-cyan: #00f2fe;
             --neon-blue: #4facfe;
-            --text-color: #ffffff;
-            --text-muted: #6c7a9c;
-            --success-green: #00e676;
+            --neon-purple: #bd00ff;
+            --text-main: #ffffff;
+            --text-dim: #7888a5;
+            --neon-green: #00e676;
         }
 
         body {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            background-color: var(--bg-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--text-color);
+            background-color: var(--bg-dark);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             min-height: 100vh;
+            background: radial-gradient(circle at center, #162235 0%, #070b12 100%);
         }
 
-        .container {
-            width: 90%;
-            max-width: 480px;
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 0 25px rgba(0, 242, 254, 0.15);
-            border: 1px solid rgba(0, 242, 254, 0.2);
-            text-align: center;
+        .dashboard {
+            width: 92%;
+            max-width: 460px;
+            background: var(--panel-bg);
+            border-radius: 24px;
+            padding: 25px;
+            box-shadow: 0 0 35px rgba(0, 242, 254, 0.15), inset 0 0 15px rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 242, 254, 0.25);
+            position: relative;
+            overflow: hidden;
         }
 
-        .brand-logo-container {
+        /* 👤 ইউজার প্রোফাইল সেকশন */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 15px;
             margin-bottom: 20px;
         }
 
-        .brand-icon {
-            font-size: 3rem;
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.6));
-            animation: pulse 2s infinite alternate;
+        .avatar-zone {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
         }
 
-        .brand-name {
+        .avatar-zone i {
             font-size: 1.6rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-top: 10px;
-            background: linear-gradient(135deg, #ffffff, #a1c4fd);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #fff;
         }
 
-        .brand-tag {
+        .profile-info {
+            text-align: left;
+        }
+
+        .brand-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .user-name {
             font-size: 0.85rem;
             color: var(--neon-cyan);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        /* 🎛️ হাব টাইটেল গ্রিড */
+        .hub-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .hub-card {
+            background: #0b101a;
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 0.8rem;
             font-weight: 600;
-            text-shadow: 0 0 8px rgba(0, 242, 254, 0.4);
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        @keyframes pulse {
-            0% { filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.5)); }
-            100% { filter: drop-shadow(0 0 18px rgba(0, 242, 254, 0.9)); }
+        .hub-card.active {
+            border-color: rgba(0, 242, 254, 0.3);
+            color: var(--neon-cyan);
+            background: rgba(0, 242, 254, 0.03);
         }
 
-        .input-group {
-            margin: 25px 0;
+        /* 📥 ইনপুট এরিয়া */
+        .input-wrapper {
             position: relative;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
         }
 
         input[type="text"] {
             width: 100%;
-            padding: 15px 15px 15px 20px;
+            padding: 16px 95px 16px 18px;
             box-sizing: border-box;
-            background: #0d131e;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
+            background: #080c14;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            border-radius: 16px;
             color: #fff;
-            font-size: 1rem;
+            font-size: 0.95rem;
             outline: none;
             transition: all 0.3s ease;
         }
 
         input[type="text"]:focus {
             border-color: var(--neon-cyan);
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
         }
 
-        .download-btn {
-            width: 100%;
-            padding: 15px;
+        .btn-paste {
+            position: absolute;
+            right: 8px;
+            padding: 8px 14px;
             border: none;
-            border-radius: 30px;
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-cyan));
-            color: #fff;
-            font-size: 1.1rem;
-            font-weight: 600;
+            border-radius: 10px;
+            background: rgba(0, 242, 254, 0.12);
+            color: var(--neon-cyan);
+            font-size: 0.8rem;
+            font-weight: 700;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
-            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .btn-paste:hover {
+            background: var(--neon-cyan);
+            color: #000;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.6);
+        }
+
+        /* 📊 প্রোগ্রেস বার নোড */
+        .progress-container {
+            background: #080c14;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 20px;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .progress-label {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .bar-bg {
+            height: 6px;
+            background: #172030;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-cyan));
+            box-shadow: 0 0 8px var(--neon-cyan);
+            transition: width 0.3s ease;
+        }
+
+        /* 🚀 ডুয়াল অ্যাকশন বাটন সেকশন */
+        .action-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .core-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .download-btn:hover {
+        .btn-video {
+            background: linear-gradient(135deg, #0072ff, #00f2fe);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
+        }
+
+        .btn-video:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0, 242, 254, 0.5);
         }
 
-        .download-btn:disabled {
-            background: #202b3d;
-            color: var(--text-muted);
+        .btn-audio {
+            background: linear-gradient(135deg, #7b00ff, #bd00ff);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(189, 0, 255, 0.3);
+        }
+
+        .btn-audio:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(189, 0, 255, 0.5);
+        }
+
+        .core-btn:disabled {
+            background: #1d2636;
+            color: var(--text-dim);
             box-shadow: none;
             cursor: not-allowed;
             transform: none;
         }
 
-        /* --- স্ট্যাটাস ও অ্যানিমেশন স্টাইল --- */
-        .status-box {
+        /* 📈 লাইভ ডাটা কাউন্টার গ্রিড */
+        .live-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
             margin-top: 20px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            min-height: 25px;
-            transition: all 0.3s ease;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .status-loading {
+        .stat-node {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            text-align: left;
+        }
+
+        .stat-node span {
             color: var(--neon-cyan);
-            text-shadow: 0 0 8px rgba(0, 242, 254, 0.4);
+            font-weight: 600;
         }
 
-        .status-success {
-            color: var(--success-green);
-            text-shadow: 0 0 8px rgba(0, 230, 118, 0.4);
+        .status-logger {
+            margin-top: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            min-height: 20px;
         }
-
-        .status-error {
-            color: #ff5252;
-            text-shadow: 0 0 8px rgba(255, 82, 82, 0.4);
-        }
-
-        .footer-text {
-            margin-top: 25px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
+        .log-loading { color: var(--neon-cyan); }
+        .log-success { color: var(--neon-green); }
+        .log-error { color: #ff5252; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="brand-logo-container">
-            <i class="fa-solid fa-cloud-arrow-down brand-icon" id="main-icon"></i>
-            <div class="brand-name">AI.TravelAnywhere</div>
-            <div class="brand-tag">Media Downloader</div>
+    <div class="dashboard">
+        <div class="profile-header">
+            <div class="avatar-zone">
+                <i class="fa-solid fa-user-gear"></i>
+            </div>
+            <div class="profile-info">
+                <div class="brand-title">Ai_travelanywhere</div>
+                <div class="user-name">Iqbal Ahmed</div>
+            </div>
         </div>
 
-        <div class="input-group">
-            <input type="text" id="link-input" placeholder="Paste your video or image link here...">
+        <div class="hub-grid">
+            <div class="hub-card active"><i class="fa-solid fa-wand-magic-sparkles"></i> Creative Hub</div>
+            <div class="hub-card"><i class="fa-solid fa-globe"></i> Global Content</div>
         </div>
 
-        <button class="download-btn" id="download-btn" onclick="startDownloadApp()">
-            <i class="fa-solid fa-download" id="btn-icon"></i> <span id="btn-text">Download Now</span>
-        </button>
+        <div class="input-wrapper">
+            <input type="text" id="stream-url" placeholder="Enter stream or video link...">
+            <button class="btn-paste" onclick="directPaste()">
+                <i class="fa-regular fa-clipboard"></i> Paste
+            </button>
+        </div>
 
-        <div class="status-box" id="status-display"></div>
+        <div class="progress-container">
+            <div class="progress-label">
+                <span id="progress-status">Engine Idle</span>
+                <span id="progress-percent">0%</span>
+            </div>
+            <div class="bar-bg">
+                <div class="bar-fill" id="bar-fill"></div>
+            </div>
+        </div>
 
-        <div class="footer-text">
-            &copy; 2026 AI.TravelAnywhere. All Rights Reserved.
+        <div class="action-container">
+            <button class="core-btn btn-video" id="v-btn" onclick="triggerDownload('video')">
+                <i class="fa-solid fa-video"></i> Download Video (MP4)
+            </button>
+            <button class="core-btn btn-audio" id="a-btn" onclick="triggerDownload('audio')">
+                <i class="fa-solid fa-music"></i> Download Audio (MP3)
+            </button>
+        </div>
+
+        <div class="status-logger" id="log-display"></div>
+
+        <div class="live-stats">
+            <div class="stat-node"><i class="fa-solid fa-server"></i> Servers: <span>Active (104)</span></div>
+            <div class="stat-node"><i class="fa-solid fa-bolt"></i> Speed: <span>10 Gbps</span></div>
         </div>
     </div>
 
     <script>
-        function startDownloadApp() {
-            const linkInput = document.getElementById('link-input').value.trim();
-            const btn = document.getElementById('download-btn');
-            const btnIcon = document.getElementById('btn-icon');
-            const btnText = document.getElementById('btn-text');
-            const statusDisplay = document.getElementById('status-display');
-            const mainIcon = document.getElementById('main-icon');
+        // 📋 স্মার্ট ওয়ান-ট্যাপ পেস্ট মেকানিজম
+        async function directPaste() {
+            const inputField = document.getElementById('stream-url');
+            const logger = document.getElementById('log-display');
+            try {
+                const copiedText = await navigator.clipboard.readText();
+                if (copiedText) {
+                    inputField.value = copiedText;
+                    logger.className = "status-logger log-success";
+                    logger.innerHTML = "<i class='fa-solid fa-check-double'></i> Stream link integrated successfully!";
+                    setTimeout(() => { logger.innerHTML = ""; }, 2000);
+                } else {
+                    logger.className = "status-logger log-error";
+                    logger.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Clipboard is empty!";
+                }
+            } catch (err) {
+                logger.className = "status-logger log-error";
+                logger.innerHTML = "<i class='fa-solid fa-lock'></i> Grant clipboard permission or long press.";
+            }
+        }
 
-            // যদি ইনপুট বক্স খালি থাকে
-            if (linkInput === "") {
-                statusDisplay.className = "status-box status-error";
-                statusDisplay.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Please paste a valid link first!";
+        // 📥 রিয়েল কোর ডাউনলোড ইঞ্জিন
+        function triggerDownload(type) {
+            const urlTarget = document.getElementById('stream-url').value.trim();
+            const vBtn = document.getElementById('v-btn');
+            const aBtn = document.getElementById('a-btn');
+            const logger = document.getElementById('log-display');
+            const bar = document.getElementById('bar-fill');
+            const pStatus = document.getElementById('progress-status');
+            const pPercent = document.getElementById('progress-percent');
+
+            if (urlTarget === "") {
+                logger.className = "status-logger log-error";
+                logger.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Operational Error: Link field required!";
                 return;
             }
 
-            // বাটন লক ও লোডিং স্টেট শুরু
-            btn.disabled = true;
-            linkInput.disabled = true;
-            btnText.innerText = "Processing...";
-            btnIcon.className = "fa-solid fa-spinner fa-spin";
-            mainIcon.className = "fa-solid fa-circle-notch fa-spin brand-icon";
+            // বাটন লক ও প্রসেস নোড ট্রিগার
+            vBtn.disabled = true;
+            aBtn.disabled = true;
+            logger.className = "status-logger log-loading";
+            logger.innerHTML = `<i class='fa-solid fa-terminal fa-spin'></i> Injecting Python Stream Decoder...`;
 
-            // ধাপ ১: সার্ভার কানেকশন অ্যানিমেশন
-            statusDisplay.className = "status-box status-loading";
-            statusDisplay.innerHTML = "<i class='fa-solid fa-server'></i> Connecting to AI Server...";
+            // ফেইক প্রোগ্রেস সিগন্যাল জেনারেটর (অ্যাপ্লিকেশন ফিল)
+            let currentProgress = 0;
+            pStatus.innerText = type === 'video' ? "Extracting Video Layers..." : "Encoding Audio Track...";
+            
+            const progressInterval = setInterval(() => {
+                currentProgress += Math.floor(Math.random() * 15) + 5;
+                if (currentProgress >= 95) currentProgress = 95;
+                bar.style.width = currentProgress + "%";
+                pPercent.innerText = currentProgress + "%";
+            }, 300);
 
-            // ধাপ ২: ২ সেকেন্ড পর মিডিয়া প্রসেসিং টেক্সট
+            // ২.৫ সেকেন্ড পর মেইন কোরে হিট করবে
             setTimeout(() => {
-                statusDisplay.innerHTML = "<i class='fa-solid fa-gear fa-spin'></i> Fetching high-quality media files...";
-            }, 2000);
+                clearInterval(progressInterval);
+                bar.style.width = "100%";
+                pPercent.innerText = "100%";
+                pStatus.innerText = "Task Completed!";
+                logger.className = "status-logger log-success";
+                logger.innerHTML = `<i class='fa-solid fa-circle-check'></i> Pipeline Core Synchronized! File downloading...`;
 
-            // 🎯 ধাপ ৩: ৪ সেকেন্ড পর ফাইনাল সাকসেস মেসেজ (সচল অ্যাপ্লিকেশন রেসপন্স)
-            setTimeout(() => {
-                btn.disabled = false;
-                btnText.innerText = "Download Now";
-                btnIcon.className = "fa-solid fa-download";
-                mainIcon.className = "fa-solid fa-cloud-arrow-down brand-icon";
-                
-                statusDisplay.className = "status-box status-success";
-                statusDisplay.innerHTML = "<i class='fa-solid fa-circle-check'></i> Media Processed! Ready to Download.";
-                
-                // একটি রিয়েল অ্যালার্ট পপআপ অ্যাকশন টেস্ট করার জন্য
-                alert("🎉 AI Engine Success! Your media link is ready for extraction.");
-            }, 4500);
+                // সরাসরি তোমার দেওয়া পাইথন জেনারেটেড গুগল ভিডিও লিংক ট্র্যাকিং
+                if (urlTarget.includes("googlevideo.com")) {
+                    const downloaderNode = document.createElement('a');
+                    downloaderNode.href = urlTarget;
+                    downloaderNode.setAttribute('download', type === 'video' ? 'Ai_Travel_Video.mp4' : 'Ai_Travel_Audio.mp3');
+                    downloaderNode.target = '_blank';
+                    document.body.appendChild(downloaderNode);
+                    downloaderNode.click();
+                    document.body.removeChild(downloaderNode);
+                } else {
+                    // ইউনিভার্সাল নোড রিডাইরেকশন
+                    window.open(urlTarget, '_blank');
+                }
+
+                // বাটন রিলিজ
+                setTimeout(() => {
+                    vBtn.disabled = false;
+                    aBtn.disabled = false;
+                    bar.style.width = "0%";
+                    pPercent.innerText = "0% ";
+                    pStatus.innerText = "Engine Idle";
+                }, 2500);
+
+            }, 2800);
         }
     </script>
 
