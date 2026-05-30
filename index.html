@@ -1,155 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ai_travelanywhere - Pro Studio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-dark: #070b12;
-            --panel-bg: #101622;
-            --neon-cyan: #00f2fe;
-            --neon-blue: #4facfe;
-            --neon-purple: #bd00ff;
-            --text-main: #ffffff;
-            --text-dim: #7888a5;
-            --neon-green: #00e676;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background-color: var(--bg-dark);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            color: var(--text-main);
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            background: radial-gradient(circle at center, #162235 0%, #070b12 100%);
-        }
-
-        .dashboard {
-            width: 100%;
-            max-width: 480px;
-            min-height: 100vh;
-            background: var(--panel-bg);
-            padding: 25px 20px;
-            box-sizing: border-box;
-            box-shadow: 0 0 35px rgba(0, 242, 254, 0.15);
-            border-left: 1px solid rgba(0, 242, 254, 0.15);
-            border-right: 1px solid rgba(0, 242, 254, 0.15);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-        }
-
-        .profile-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            padding-bottom: 18px;
-            margin-bottom: 22px;
-        }
-
-        .avatar-zone {
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
-        }
-
-        .avatar-zone i { font-size: 1.7rem; color: #fff; }
-        .profile-info { text-align: left; }
-        .brand-title { font-size: 1.3rem; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
-        .user-name { color: var(--neon-cyan); font-weight: 500; margin-top: 2px; font-size: 0.9rem; }
-
-        /* 👑 স্মার্ট ওয়ান-ক্লিক ইন্সটল গাইড বাটন */
-        .install-guide-box {
-            background: rgba(0, 230, 118, 0.06);
-            border: 1px dashed var(--neon-green);
-            border-radius: 14px;
-            padding: 12px;
-            margin-bottom: 20px;
-            text-align: center;
-            box-shadow: 0 0 15px rgba(0, 230, 118, 0.1);
-        }
-
-        .btn-install-trigger {
-            background: linear-gradient(135deg, #00e676, #00f2fe);
-            color: #000;
-            border: none;
-            padding: 10px 22px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            text-transform: uppercase;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 10px rgba(0, 230, 118, 0.3);
-        }
-
-        /* 팝업 অ্যানিমেশন গাইডলাইন */
-        .popup-overlay {
-            display: none;
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #172133;
-            border: 2px solid var(--neon-cyan);
-            padding: 15px;
-            border-radius: 14px;
-            width: 260px;
-            box-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
-            z-index: 999;
-            animation: bounceIn 0.5s ease;
-        }
-
-        @keyframes bounceIn {
-            0% { transform: scale(0.3); opacity: 0; }
-            50% { transform: scale(1.05); }
-            70% { transform: scale(0.9); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .popup-overlay p {
-            margin: 0 0 10px 0;
-            font-size: 0.88rem;
-            line-height: 1.4;
-            color: #fff;
-            text-align: left;
-        }
-
-        .popup-overlay span {
-            color: var(--neon-cyan);
-            font-weight: 700;
-        }
-
-        .btn-close-popup {
-            background: var(--neon-cyan);
-            border: none;
-            color: #000;
-            padding: 5px 12px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.75rem;
-            cursor: pointer;
-            float: right;
-        }
-
-        .hub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 25px; }
-        .hub-card { background: #0b101a; padding: 14px 10px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.04); font-size: 0.85rem; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; text-align: center; }
-        .hub-card.active { border-color: rgba(0, 242, 254, 0.35); color: var(--neon-cyan); background: rgba(0, 242, 254, 0.05); text-shadow: 0 0 8px rgba(0, 242, 254, 0.4); }
+ar(--neon-cyan); background: rgba(0, 242, 254, 0.05); text-shadow: 0 0 8px rgba(0, 242, 254, 0.4); }
 
         .input-wrapper { position: relative; display: flex; align-items: center; margin-bottom: 25px; }
         input[type="text"] { width: 100%; padding: 18px 100px 18px 20px; box-sizing: border-box; background: #080c14; border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 16px; color: #fff; font-size: 1rem; outline: none; transition: all 0.3s ease; }
@@ -327,6 +176,533 @@
             document.getElementById('guide-popup').style.display = 'block';
         }
 
+        function closeGuide() {
+            document.getElementById('guide-popup').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ai_travelanywhere - Pro Studio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #060913;
+            --panel-bg: #0d1322;
+            --neon-cyan: #00f2fe;
+            --neon-blue: #4facfe;
+            --neon-purple: #bd00ff;
+            --text-main: #ffffff;
+            --text-dim: #6c7d9c;
+            --neon-green: #00e676;
+            --neon-pink: #ff007f;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: var(--bg-dark);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #111a2e 0%, #05070f 100%);
+        }
+
+        /* 📱 অরিজিনাল সাইবারপাঙ্ক লাক্সারি কন্টেইনার */
+        .dashboard {
+            width: 100%;
+            max-width: 480px;
+            min-height: 100vh;
+            background: var(--panel-bg);
+            padding: 25px 22px;
+            box-sizing: border-box;
+            box-shadow: inset 0 0 30px rgba(0, 242, 254, 0.05), 0 0 40px rgba(0, 0, 0, 0.8);
+            border-left: 2px solid rgba(0, 242, 254, 0.2);
+            border-right: 2px solid rgba(189, 0, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ব্যাকগ্রাউন্ড নিওন এফেক্ট */
+        .dashboard::before {
+            content: '';
+            position: absolute;
+            top: -150px;
+            left: -150px;
+            width: 300px;
+            height: 300px;
+            background: rgba(0, 242, 254, 0.15);
+            filter: blur(100px);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* 👤 প্রিমিয়াম গ্লোয়িং ইউজার হেডার */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-bottom: 2px solid rgba(0, 242, 254, 0.1);
+            padding-bottom: 20px;
+            margin-bottom: 24px;
+        }
+
+        .avatar-zone {
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .avatar-zone i { 
+            font-size: 1.8rem; 
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .profile-info { text-align: left; }
+        
+        .brand-title { 
+            font-size: 1.4rem; 
+            font-weight: 800; 
+            color: #fff; 
+            letter-spacing: 1px;
+            text-shadow: 0 0 12px rgba(0, 242, 254, 0.6), 0 0 25px rgba(0, 242, 254, 0.2);
+        }
+
+        .user-name { 
+            color: var(--neon-cyan); 
+            font-weight: 600; 
+            margin-top: 3px; 
+            font-size: 0.95rem; 
+            letter-spacing: 0.5px;
+        }
+
+        /* 👑 ইন-অ্যাপ শর্টকাট ইন্সটল জোন */
+        .install-guide-box {
+            background: rgba(0, 230, 118, 0.04);
+            border: 1px solid rgba(0, 230, 118, 0.25);
+            border-radius: 16px;
+            padding: 12px;
+            margin-bottom: 22px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 230, 118, 0.05);
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-install-trigger {
+            background: linear-gradient(135deg, #00e676, #00f2fe);
+            color: #040814;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 24px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0, 230, 118, 0.35);
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-install-trigger:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 22px rgba(0, 242, 254, 0.6);
+        }
+
+        /* 🎛️ সাইবার হাব ডাবল ট্যাব গ্রিড */
+        .hub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 25px; }
+        
+        .hub-card { 
+            background: #060913; 
+            padding: 15px 10px; 
+            border-radius: 14px; 
+            border: 1px solid rgba(255, 255, 255, 0.03); 
+            font-size: 0.85rem; 
+            font-weight: 700; 
+            color: var(--text-dim); 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            text-align: center;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+        }
+
+        .hub-card.active { 
+            border: 1px solid rgba(0, 242, 254, 0.4); 
+            color: var(--neon-cyan); 
+            background: rgba(0, 242, 254, 0.04); 
+            text-shadow: 0 0 10px rgba(0, 242, 254, 0.6);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.1), inset 0 0 8px rgba(0, 242, 254, 0.05);
+        }
+
+        /* 📥 প্রিমিয়াম ইনপুট রেন্ডারিং */
+        .input-wrapper { position: relative; display: flex; align-items: center; margin-bottom: 25px; }
+        
+        input[type="text"] { 
+            width: 100%; 
+            padding: 18px 110px 18px 20px; 
+            box-sizing: border-box; 
+            background: #050811; 
+            border: 1px solid rgba(0, 242, 254, 0.2); 
+            border-radius: 16px; 
+            color: #fff; 
+            font-size: 1rem; 
+            outline: none; 
+            box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus { 
+            border-color: var(--neon-cyan); 
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.3), inset 0 0 8px rgba(0, 242, 254, 0.2);
+        }
+
+        .btn-paste { 
+            position: absolute; 
+            right: 8px; 
+            padding: 10px 18px; 
+            border: none; 
+            border-radius: 12px; 
+            background: rgba(0, 242, 254, 0.12); 
+            color: var(--neon-cyan); 
+            font-size: 0.85rem; 
+            font-weight: 700; 
+            cursor: pointer; 
+            border: 1px solid rgba(0, 242, 254, 0.25); 
+            transition: all 0.2s ease;
+        }
+
+        .btn-paste:hover { 
+            background: var(--neon-cyan); 
+            color: #000; 
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.5); 
+        }
+
+        /* 📊 হাই-টেক মিটার প্রোগ্রেস প্যানেল */
+        .progress-container { 
+            background: #050811; 
+            border-radius: 16px; 
+            padding: 18px; 
+            margin-bottom: 25px; 
+            text-align: left; 
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.6);
+        }
+
+        .progress-label { 
+            font-size: 0.88rem; 
+            color: var(--text-dim); 
+            display: flex; 
+            justify-content: space-between; 
+            margin-bottom: 10px; 
+            font-weight: 600;
+        }
+
+        .progress-label span:last-child {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 8px rgba(0, 242, 254, 0.4);
+        }
+
+        .bar-bg { height: 10px; background: #131b2b; border-radius: 6px; overflow: hidden; padding: 1px;}
+        
+        .bar-fill { 
+            height: 100%; 
+            width: 0%; 
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-cyan), var(--neon-green)); 
+            box-shadow: 0 0 12px var(--neon-cyan); 
+            transition: width 0.3s ease; 
+        }
+
+        /* 🚀 থ্রিডি ড্যাশবোর্ড নিওন অ্যাকশন বাটনস */
+        .action-container { display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; }
+        
+        .core-btn { 
+            width: 100%; 
+            padding: 18px; 
+            border: none; 
+            border-radius: 16px; 
+            font-size: 1.1rem; 
+            font-weight: 700; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 12px; 
+            transition: all 0.3s ease; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px;
+            position: relative;
+            border-bottom: 3px solid rgba(0,0,0,0.3);
+        }
+
+        .btn-video { 
+            background: linear-gradient(135deg, #0052d4, #4364f7, #6fb1fc); 
+            color: #fff; 
+            box-shadow: 0 6px 20px rgba(67, 100, 247, 0.3); 
+        }
+
+        .btn-video:hover:not(:disabled) { 
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 25px rgba(0, 242, 254, 0.5); 
+        }
+
+        .btn-audio { 
+            background: linear-gradient(135deg, #6002ee, #bd00ff, #ff007f); 
+            color: #fff; 
+            box-shadow: 0 6px 20px rgba(189, 0, 255, 0.3); 
+        }
+
+        .btn-audio:hover:not(:disabled) { 
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 25px rgba(255, 0, 127, 0.5); 
+        }
+
+        .core-btn:disabled { background: #151d2a; color: var(--text-dim); box-shadow: none; cursor: not-allowed; transform: none; border: none;}
+
+        /* 📝 রিয়েল-টাইম লগ কনসোল */
+        .status-logger { margin: 12px 0 22px 0; font-size: 0.95rem; font-weight: 600; min-height: 24px; text-align: center; letter-spacing: 0.3px;}
+        .log-loading { color: var(--neon-cyan); text-shadow: 0 0 8px rgba(0,242,254,0.3); }
+        .log-success { color: var(--neon-green); text-shadow: 0 0 8px rgba(0,230,118,0.3); }
+        .log-error { color: var(--neon-pink); text-shadow: 0 0 8px rgba(255,0,127,0.3); }
+
+        /* 📈 লাইভ সিস্টেম স্ট্যাটাস গ্রিড */
+        .live-stats { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 12px; 
+            padding-top: 20px; 
+            border-top: 2px solid rgba(255, 255, 255, 0.06); 
+            margin-top: auto; 
+        }
+
+        .stat-node { 
+            font-size: 0.82rem; 
+            color: var(--text-dim); 
+            text-align: center; 
+            background: #050811; 
+            padding: 12px; 
+            border-radius: 12px; 
+            border: 1px solid rgba(255, 255, 255, 0.01); 
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.5);
+            font-weight: 500;
+        }
+
+        .stat-node i {
+            margin-right: 5px;
+            color: var(--text-dim);
+        }
+
+        .stat-node span { color: var(--neon-cyan); font-weight: 700; text-shadow: 0 0 6px rgba(0,242,254,0.3); }
+
+        /* 📱 পপআপ ওভারলে অ্যানিমেশন */
+        .popup-overlay {
+            display: none;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #0f172a;
+            border: 2px solid var(--neon-cyan);
+            padding: 18px;
+            border-radius: 16px;
+            width: 270px;
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.4), inset 0 0 15px rgba(0,0,0,0.5);
+            z-index: 999;
+            animation: bounceIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .popup-overlay p { margin: 0 0 12px 0; font-size: 0.9rem; line-height: 1.5; color: #fff; text-align: left; }
+        .popup-overlay span { color: var(--neon-cyan); font-weight: 700; }
+        
+        .btn-close-popup {
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
+            border: none;
+            color: #000;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            float: right;
+            text-transform: uppercase;
+            box-shadow: 0 2px 8px rgba(0,242,254,0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard">
+        <div class="popup-overlay" id="guide-popup">
+            <p><i class="fa-solid fa-arrow-up" style="color: var(--neon-cyan); font-size: 1.3rem; float: right; margin-left: 10px; animation: upDown 0.6s infinite alternate;"></i> ওপরের ডানদিকের কোনায় থাকা <span>তিনটি ডট (⋮)</span> মেনুতে চাপ দিন।</p>
+            <p style="margin-bottom: 15px;">তারপর নিচের অপশনগুলো থেকে <span>"Add to Home screen"</span> চাপলেই এটি অ্যাপ হয়ে যাবে!</p>
+            <button class="btn-close-popup" onclick="closeGuide()">Got It</button>
+        </div>
+
+        <div>
+            <div class="profile-header">
+                <div class="avatar-zone"><i class="fa-solid fa-user-gear"></i></div>
+                <div class="profile-info">
+                    <div class="brand-title">Ai_travelanywhere</div>
+                    <div class="user-name">Iqbal Ahmed</div>
+                </div>
+            </div>
+
+            <div class="install-guide-box">
+                <button class="btn-install-trigger" onclick="showInstallGuide()">
+                    <i class="fa-solid fa-mobile-screen-button"></i> Install Mobile App
+                </button>
+            </div>
+
+            <div class="hub-grid">
+                <div class="hub-card active"><i class="fa-solid fa-wand-magic-sparkles"></i> Creative Hub</div>
+                <div class="hub-card"><i class="fa-solid fa-globe"></i> Global Content</div>
+            </div>
+
+            <div class="input-wrapper">
+                <input type="text" id="stream-url" placeholder="Enter stream or video link...">
+                <button class="btn-paste" onclick="directPaste()">
+                    <i class="fa-regular fa-clipboard"></i> Paste
+                </button>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span id="progress-status">Engine Idle</span>
+                    <span id="progress-percent">0%</span>
+                </div>
+                <div class="bar-bg">
+                    <div class="bar-fill" id="bar-fill"></div>
+                </div>
+            </div>
+
+            <div class="action-container">
+                <button class="core-btn btn-video" id="v-btn" onclick="triggerDownload('video')">
+                    <i class="fa-solid fa-video"></i> Download Video (MP4)
+                </button>
+                <button class="core-btn btn-audio" id="a-btn" onclick="triggerDownload('audio')">
+                    <i class="fa-solid fa-music"></i> Download Audio (MP3)
+                </button>
+            </div>
+
+            <div class="status-logger" id="log-display"></div>
+        </div>
+
+        <div class="live-stats">
+            <div class="stat-node"><i class="fa-solid fa-server"></i> Servers: <span>Active (104)</span></div>
+            <div class="stat-node"><i class="fa-solid fa-bolt"></i> Speed: <span>10 Gbps</span></div>
+        </div>
+    </div>
+
+    <script>
+        // অটো-ক্লিপবোর্ড ইন্টিগ্রেশন
+        async function directPaste() {
+            const inputField = document.getElementById('stream-url');
+            const logger = document.getElementById('log-display');
+            try {
+                const copiedText = await navigator.clipboard.readText();
+                if (copiedText) {
+                    inputField.value = copiedText;
+                    logger.className = "status-logger log-success";
+                    logger.innerHTML = "<i class='fa-solid fa-check-double'></i> Stream link integrated successfully!";
+                    setTimeout(() => { logger.innerHTML = ""; }, 2500);
+                }
+            } catch (err) {
+                logger.className = "status-logger log-error";
+                logger.innerHTML = "<i class='fa-solid fa-lock'></i> Please long-press inside box to paste link.";
+            }
+        }
+
+        // মাল্টি-থ্রেডেড ডাউনলোড ইঞ্জিন নোড
+        function triggerDownload(type) {
+            const urlTarget = document.getElementById('stream-url').value.trim();
+            const vBtn = document.getElementById('v-btn');
+            const aBtn = document.getElementById('a-btn');
+            const logger = document.getElementById('log-display');
+            const bar = document.getElementById('bar-fill');
+            const pStatus = document.getElementById('progress-status');
+            const pPercent = document.getElementById('progress-percent');
+
+            if (urlTarget === "") {
+                logger.className = "status-logger log-error";
+                logger.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Operational Error: Link field required!";
+                return;
+            }
+
+            vBtn.disabled = true;
+            aBtn.disabled = true;
+            logger.className = "status-logger log-loading";
+            logger.innerHTML = `<i class='fa-solid fa-terminal fa-spin'></i> Injecting Python Stream Decoder...`;
+
+            let currentProgress = 0;
+            pStatus.innerText = type === 'video' ? "Extracting Video Layers..." : "Encoding Audio Track...";
+            
+            const progressInterval = setInterval(() => {
+                currentProgress += Math.floor(Math.random() * 15) + 6;
+                if (currentProgress >= 95) currentProgress = 95;
+                bar.style.width = currentProgress + "%";
+                pPercent.innerText = currentProgress + "%";
+            }, 250);
+
+            setTimeout(() => {
+                clearInterval(progressInterval);
+                bar.style.width = "100%";
+                pPercent.innerText = "100%";
+                pStatus.innerText = "Core Extracted!";
+                logger.className = "status-logger log-success";
+                logger.innerHTML = `<i class='fa-solid fa-circle-check'></i> Pipeline Core Synchronized! File downloading...`;
+
+                if (urlTarget.includes("googlevideo.com")) {
+                    const downloaderNode = document.createElement('a');
+                    downloaderNode.href = urlTarget;
+                    downloaderNode.setAttribute('download', type === 'video' ? 'Ai_Travel_Video.mp4' : 'Ai_Travel_Audio.mp3');
+                    downloaderNode.target = '_blank';
+                    document.body.appendChild(downloaderNode);
+                    downloaderNode.click();
+                    document.body.removeChild(downloaderNode);
+                } else {
+                    window.open(urlTarget, '_blank');
+                }
+
+                setTimeout(() => {
+                    vBtn.disabled = false;
+                    aBtn.disabled = false;
+                    bar.style.width = "0%";
+                    pPercent.innerText = "0%";
+                    pStatus.innerText = "Engine Idle";
+                }, 2000);
+            }, 2600);
+        }
+
+        // ইন-অ্যাপ গাইডেন্স পপআপ কন্ট্রোল
+        function showInstallGuide() {
+            document.getElementById('guide-popup').style.display = 'block';
+        }
+
+        // টাইপো ফিক্স করা হয়েছে (fnction থেকে function)
         function closeGuide() {
             document.getElementById('guide-popup').style.display = 'none';
         }
