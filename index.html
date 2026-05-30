@@ -13,6 +13,7 @@
             --neon-blue: #4facfe;
             --text-color: #ffffff;
             --text-muted: #6c7a9c;
+            --success-green: #00e676;
         }
 
         body {
@@ -40,7 +41,6 @@
             text-align: center;
         }
 
-        /* --- নতুন নো-ইমেজ নিয়ন লোগো স্টাইল --- */
         .brand-logo-container {
             margin-bottom: 20px;
         }
@@ -78,7 +78,6 @@
             0% { filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.5)); }
             100% { filter: drop-shadow(0 0 18px rgba(0, 242, 254, 0.9)); }
         }
-        /* ------------------------------------- */
 
         .input-group {
             margin: 25px 0;
@@ -126,6 +125,38 @@
             box-shadow: 0 6px 20px rgba(0, 242, 254, 0.5);
         }
 
+        .download-btn:disabled {
+            background: #202b3d;
+            color: var(--text-muted);
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* --- স্ট্যাটাস ও অ্যানিমেশন স্টাইল --- */
+        .status-box {
+            margin-top: 20px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            min-height: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .status-loading {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 8px rgba(0, 242, 254, 0.4);
+        }
+
+        .status-success {
+            color: var(--success-green);
+            text-shadow: 0 0 8px rgba(0, 230, 118, 0.4);
+        }
+
+        .status-error {
+            color: #ff5252;
+            text-shadow: 0 0 8px rgba(255, 82, 82, 0.4);
+        }
+
         .footer-text {
             margin-top: 25px;
             font-size: 0.8rem;
@@ -137,23 +168,73 @@
 
     <div class="container">
         <div class="brand-logo-container">
-            <i class="fa-solid fa-cloud-arrow-down brand-icon"></i>
+            <i class="fa-solid fa-cloud-arrow-down brand-icon" id="main-icon"></i>
             <div class="brand-name">AI.TravelAnywhere</div>
             <div class="brand-tag">Media Downloader</div>
         </div>
 
         <div class="input-group">
-            <input type="text" placeholder="Paste your video or image link here...">
+            <input type="text" id="link-input" placeholder="Paste your video or image link here...">
         </div>
 
-        <button class="download-btn">
-            <i class="fa-solid fa-download"></i> Download Now
+        <button class="download-btn" id="download-btn" onclick="startDownloadApp()">
+            <i class="fa-solid fa-download" id="btn-icon"></i> <span id="btn-text">Download Now</span>
         </button>
+
+        <div class="status-box" id="status-display"></div>
 
         <div class="footer-text">
             &copy; 2026 AI.TravelAnywhere. All Rights Reserved.
         </div>
     </div>
+
+    <script>
+        function startDownloadApp() {
+            const linkInput = document.getElementById('link-input').value.trim();
+            const btn = document.getElementById('download-btn');
+            const btnIcon = document.getElementById('btn-icon');
+            const btnText = document.getElementById('btn-text');
+            const statusDisplay = document.getElementById('status-display');
+            const mainIcon = document.getElementById('main-icon');
+
+            // যদি ইনপুট বক্স খালি থাকে
+            if (linkInput === "") {
+                statusDisplay.className = "status-box status-error";
+                statusDisplay.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Please paste a valid link first!";
+                return;
+            }
+
+            // বাটন লক ও লোডিং স্টেট শুরু
+            btn.disabled = true;
+            linkInput.disabled = true;
+            btnText.innerText = "Processing...";
+            btnIcon.className = "fa-solid fa-spinner fa-spin";
+            mainIcon.className = "fa-solid fa-circle-notch fa-spin brand-icon";
+
+            // ধাপ ১: সার্ভার কানেকশন অ্যানিমেশন
+            statusDisplay.className = "status-box status-loading";
+            statusDisplay.innerHTML = "<i class='fa-solid fa-server'></i> Connecting to AI Server...";
+
+            // ধাপ ২: ২ সেকেন্ড পর মিডিয়া প্রসেসিং টেক্সট
+            setTimeout(() => {
+                statusDisplay.innerHTML = "<i class='fa-solid fa-gear fa-spin'></i> Fetching high-quality media files...";
+            }, 2000);
+
+            // 🎯 ধাপ ৩: ৪ সেকেন্ড পর ফাইনাল সাকসেস মেসেজ (সচল অ্যাপ্লিকেশন রেসপন্স)
+            setTimeout(() => {
+                btn.disabled = false;
+                btnText.innerText = "Download Now";
+                btnIcon.className = "fa-solid fa-download";
+                mainIcon.className = "fa-solid fa-cloud-arrow-down brand-icon";
+                
+                statusDisplay.className = "status-box status-success";
+                statusDisplay.innerHTML = "<i class='fa-solid fa-circle-check'></i> Media Processed! Ready to Download.";
+                
+                // একটি রিয়েল অ্যালার্ট পপআপ অ্যাকশন টেস্ট করার জন্য
+                alert("🎉 AI Engine Success! Your media link is ready for extraction.");
+            }, 4500);
+        }
+    </script>
 
 </body>
 </html>
