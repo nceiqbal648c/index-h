@@ -866,6 +866,246 @@ ar(--neon-cyan); background: rgba(0, 242, 254, 0.05); text-shadow: 0 0 8px rgba(
                     <span id="progress-percent">0%</span>
                 </div>
                 <div class="bar-bg">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ai_travelanywhere - Pro Studio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #050912;
+            --panel-bg: #09101d;
+            --neon-cyan: #00f2fe;
+            --neon-blue: #4facfe;
+            --neon-purple: #bd00ff;
+            --text-main: #ffffff;
+            --text-dim: #5c6f8a;
+            --neon-green: #00e676;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-main);
+            min-height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+        }
+
+        .dashboard {
+            width: 100%;
+            max-width: 480px;
+            min-height: 100vh;
+            background: var(--panel-bg);
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-bottom: 1px solid rgba(0, 242, 254, 0.15);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .avatar-zone {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+        }
+
+        .avatar-zone i { font-size: 1.5rem; color: #fff; }
+        .brand-title { font-size: 1.25rem; font-weight: 700; color: #fff; }
+        .user-name { color: var(--neon-cyan); font-weight: 600; font-size: 0.88rem; margin-top: 2px; }
+
+        .install-guide-box {
+            background: rgba(0, 230, 118, 0.03);
+            border: 1px dashed rgba(0, 230, 118, 0.3);
+            border-radius: 12px;
+            padding: 10px;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+
+        .btn-install-trigger {
+            background: linear-gradient(135deg, #00e676, #00f2fe);
+            color: #050912;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+        .hub-card { 
+            background: #050811; 
+            padding: 14px 10px; 
+            border-radius: 12px; 
+            border: 1px solid rgba(255, 255, 255, 0.02); 
+            font-size: 0.8rem; 
+            font-weight: 700; 
+            color: var(--text-dim); 
+            text-transform: uppercase; 
+            text-align: center;
+        }
+        .hub-card.active { 
+            border: 1px solid rgba(0, 242, 254, 0.3); 
+            color: var(--neon-cyan); 
+            background: rgba(0, 242, 254, 0.05); 
+        }
+
+        .input-wrapper { position: relative; display: flex; align-items: center; margin-bottom: 22px; }
+        input[type="text"] { 
+            width: 100%; 
+            padding: 16px 100px 16px 16px; 
+            background: #04060c; 
+            border: 1px solid rgba(0, 242, 254, 0.25); 
+            border-radius: 14px; 
+            color: #fff; 
+            font-size: 0.95rem; 
+            outline: none; 
+        }
+
+        .btn-paste { 
+            position: absolute; 
+            right: 8px; 
+            padding: 8px 14px; 
+            border: none; 
+            border-radius: 10px; 
+            background: rgba(0, 242, 254, 0.15); 
+            color: var(--neon-cyan); 
+            font-size: 0.8rem; 
+            font-weight: 700; 
+            cursor: pointer; 
+        }
+
+        .progress-container { 
+            background: #04060c; 
+            border-radius: 14px; 
+            padding: 15px; 
+            margin-bottom: 22px; 
+        }
+        .progress-label { font-size: 0.82rem; color: var(--text-dim); display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .bar-bg { height: 8px; background: #111824; border-radius: 4px; overflow: hidden; }
+        .bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--neon-blue), var(--neon-cyan)); transition: width 0.3s ease; }
+
+        .action-container { display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px; }
+        .core-btn { 
+            width: 100%; 
+            padding: 16px; 
+            border: none; 
+            border-radius: 14px; 
+            font-size: 1rem; 
+            font-weight: 700; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 10px; 
+            text-transform: uppercase;
+            color: #fff;
+        }
+        .btn-video { background: linear-gradient(135deg, #0052d4, #4364f7); }
+        .btn-audio { background: linear-gradient(135deg, #6002ee, #bd00ff); }
+        .core-btn:disabled { background: #121924; color: var(--text-dim); cursor: not-allowed; }
+
+        .status-logger { margin: 10px 0; font-size: 0.9rem; font-weight: 600; min-height: 22px; text-align: center; }
+        .log-loading { color: var(--neon-cyan); }
+        .log-success { color: var(--neon-green); }
+        .log-error { color: #ff007f; }
+
+        .live-stats { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 10px; 
+            padding-top: 15px; 
+            border-top: 1px solid rgba(255, 255, 255, 0.06); 
+            margin-top: auto; 
+        }
+        .stat-node { font-size: 0.8rem; color: var(--text-dim); text-align: center; background: #04060c; padding: 10px; border-radius: 10px; }
+        .stat-node span { color: var(--neon-cyan); font-weight: 700; }
+
+        .popup-overlay {
+            display: none;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #0f172a;
+            border: 2px solid var(--neon-cyan);
+            padding: 15px;
+            border-radius: 14px;
+            width: 250px;
+            z-index: 999;
+        }
+        .popup-overlay p { margin: 0 0 10px 0; font-size: 0.85rem; line-height: 1.4; color: #fff; }
+        .btn-close-popup { background: var(--neon-cyan); border: none; color: #000; padding: 5px 12px; border-radius: 6px; font-weight: 700; cursor: pointer; float: right; }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard">
+        <div class="popup-overlay" id="guide-popup">
+            <p>ওপরের ডানদিকের কোনায় তিনটি ডট (⋮) মেনুতে চাপ দিয়ে "Add to Home screen" সিলেক্ট করলেই এটি অ্যাপ হয়ে যাবে!</p>
+            <button class="btn-close-popup" onclick="closeGuide()">Got It</button>
+        </div>
+
+        <div>
+            <div class="profile-header">
+                <div class="avatar-zone"><i class="fa-solid fa-user-gear"></i></div>
+                <div class="profile-info">
+                    <div class="brand-title">Ai_travelanywhere</div>
+                    <div class="user-name">Iqbal Ahmed</div>
+                </div>
+            </div>
+
+            <div class="install-guide-box">
+                <button class="btn-install-trigger" onclick="showInstallGuide()">
+                    <i class="fa-solid fa-mobile-screen-button"></i> Install Mobile App
+                </button>
+            </div>
+
+            <div class="hub-grid">
+                <div class="hub-card active"><i class="fa-solid fa-wand-magic-sparkles"></i> Creative Hub</div>
+                <div class="hub-card"><i class="fa-solid fa-globe"></i> Global Content</div>
+            </div>
+
+            <div class="input-wrapper">
+                <input type="text" id="stream-url" placeholder="Enter stream or video link...">
+                <button class="btn-paste" onclick="directPaste()">
+                    <i class="fa-regular fa-clipboard"></i> Paste
+                </button>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span id="progress-status">Engine Idle</span>
+                    <span id="progress-percent">0%</span>
+                </div>
+                <div class="bar-bg">
                     <div class="bar-fill" id="bar-fill"></div>
                 </div>
             </div>
@@ -906,7 +1146,6 @@ ar(--neon-cyan); background: rgba(0, 242, 254, 0.05); text-shadow: 0 0 8px rgba(
             }
         }
 
-        // 🔗 মোবাইল টার্মাক্স (Python Back-end) কানেকশন গেটওয়ে
         function triggerDownload(type) {
             const urlTarget = document.getElementById('stream-url').value.trim();
             const vBtn = document.getElementById('v-btn');
@@ -930,7 +1169,6 @@ ar(--neon-cyan); background: rgba(0, 242, 254, 0.05); text-shadow: 0 0 8px rgba(
             pPercent.innerText = "40%";
             pStatus.innerText = "Connecting to Termux...";
 
-            // 📱 লোকালহোস্টে রিকোয়েস্ট পাঠানো (টার্মাক্স সার্ভার)
             fetch('http://127.0.0.1:5000/download', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -969,6 +1207,6 @@ ar(--neon-cyan); background: rgba(0, 242, 254, 0.05); text-shadow: 0 0 8px rgba(
 
         function showInstallGuide() { document.getElementById('guide-popup').style.display = 'block'; }
         function closeGuide() { document.getElementById('guide-popup').style.display = 'none'; }
-    </style>
+    </script>
 </body>
 </html>
