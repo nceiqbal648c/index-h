@@ -3,52 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI.TravelAnywhere | Creator Studio</title>
+    <title>AI.TravelAnywhere - Downloader</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { box-sizing: border-box; }
-        body { background-color: #000000; color: #ffffff; font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; min-height: 100vh; margin: 0; }
-        .top-corner-logo { position: absolute; top: 20px; left: 20px; width: 55px; height: 55px; border-radius: 50%; border: 2px solid #00ffff; box-shadow: 0 0 15px #00ffff; object-fit: cover; }
-        .container { text-align: center; width: 100%; max-width: 480px; margin-top: 60px; }
-        h2 { color: #00ffff; text-shadow: 0 0 20px rgba(0, 255, 255, 0.6); letter-spacing: 2px; margin-bottom: 5px; font-size: 28px; }
-        .creator-tag { font-size: 12px; color: #888; letter-spacing: 1px; margin-bottom: 25px; text-transform: uppercase; }
-        .creator-tag span { color: #00ffff; font-weight: bold; }
-        .panel { background: rgba(5, 5, 5, 0.8); border: 1px solid rgba(0, 255, 255, 0.2); border-radius: 20px; padding: 20px; margin-bottom: 20px; box-shadow: 0 0 15px rgba(0, 255, 255, 0.05); text-align: left; }
-        .panel-title { color: #00ffff; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; border-left: 3px solid #00ffff; padding-left: 10px; }
-        .input-box { width: 100%; padding: 12px 15px; border-radius: 12px; border: 1px solid #00ffff; background: rgba(0, 0, 0, 0.5); color: #fff; font-size: 14px; box-shadow: 0 0 10px rgba(0, 255, 255, 0.1); outline: none; margin-bottom: 10px; }
-        .neon-btn { width: 100%; padding: 12px; font-size: 14px; font-weight: bold; color: #000; background: #00ffff; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 0 15px #00ffff; transition: 0.3s; }
-        .neon-btn:hover { box-shadow: 0 0 25px #00ffff; transform: scale(1.01); }
-        .caption-output { background: rgba(255, 255, 255, 0.05); border: 1px dashed rgba(0, 255, 255, 0.3); border-radius: 10px; padding: 12px; font-size: 13px; color: #ddd; margin-top: 10px; position: relative; line-height: 1.4; }
-        .copy-btn { position: absolute; right: 10px; bottom: 10px; background: #00ffff; color: #000; border: none; padding: 3px 8px; font-size: 11px; font-weight: bold; border-radius: 5px; cursor: pointer; }
-        .file-label { display: block; text-align: center; padding: 15px; border: 2px dashed rgba(0, 255, 255, 0.4); border-radius: 12px; cursor: pointer; color: #aaa; font-size: 14px; margin-bottom: 10px; }
-        .file-label:hover { border-color: #00ffff; color: #fff; }
-        input[type="file"] { display: none; }
+        :root {
+            --bg-color: #0a0e17;
+            --card-bg: #131a26;
+            --neon-cyan: #00f2fe;
+            --neon-blue: #4facfe;
+            --text-color: #ffffff;
+            --text-muted: #6c7a9c;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: var(--bg-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 480px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.15);
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            text-align: center;
+        }
+
+        /* --- নতুন নো-ইমেজ নিয়ন লোগো স্টাইল --- */
+        .brand-logo-container {
+            margin-bottom: 20px;
+        }
+
+        .brand-icon {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.6));
+            animation: pulse 2s infinite alternate;
+        }
+
+        .brand-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            background: linear-gradient(135deg, #ffffff, #a1c4fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-tag {
+            font-size: 0.85rem;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 5px;
+            font-weight: 600;
+            text-shadow: 0 0 8px rgba(0, 242, 254, 0.4);
+        }
+
+        @keyframes pulse {
+            0% { filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.5)); }
+            100% { filter: drop-shadow(0 0 18px rgba(0, 242, 254, 0.9)); }
+        }
+        /* ------------------------------------- */
+
+        .input-group {
+            margin: 25px 0;
+            position: relative;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px 15px 15px 20px;
+            box-sizing: border-box;
+            background: #0d131e;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+        }
+
+        .download-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-cyan));
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.5);
+        }
+
+        .footer-text {
+            margin-top: 25px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
     </style>
 </head>
 <body>
-    <img src="1000058577.png" class="top-corner-logo" alt="Logo">
+
     <div class="container">
-        <h2>AI.TravelAnywhere</h2>
-        <div class="creator-tag">Developed by <span>Iqbal Ahmed</span> | @ia.travelanywhere</div>
-        <div class="panel">
-            <div class="panel-title">Global Media Downloader</div>
-            <input type="text" class="input-box" placeholder="Paste YouTube/Video Link Here...">
-            <button class="neon-btn">Download Media</button>
+        <div class="brand-logo-container">
+            <i class="fa-solid fa-cloud-arrow-down brand-icon"></i>
+            <div class="brand-name">AI.TravelAnywhere</div>
+            <div class="brand-tag">Media Downloader</div>
         </div>
-        <div class="panel">
-            <div class="panel-title">Pillow Creative Hub (Image Studio)</div>
-            <label class="file-label" for="photo-input">📁 Upload Travel Photo for Neon-Filter</label>
-            <input type="file" id="photo-input">
-            <button class="neon-btn" style="background: transparent; color: #00ffff; border: 1px solid #00ffff; box-shadow: none;">Apply Cinematic Tone</button>
+
+        <div class="input-group">
+            <input type="text" placeholder="Paste your video or image link here...">
         </div>
-        <div class="panel">
-            <div class="panel-title">Social Content Studio</div>
-            <button class="neon-btn" style="background: #101010; color: #00ffff; border: 1px solid #00ffff; box-shadow: none;">Generate Facebook Caption</button>
-            <div class="caption-output">
-                Solo road, global story. #AITravelAnywhere #Explorer #DhakaToWorld
-                <button class="copy-btn">COPY</button>
-            </div>
+
+        <button class="download-btn">
+            <i class="fa-solid fa-download"></i> Download Now
+        </button>
+
+        <div class="footer-text">
+            &copy; 2026 AI.TravelAnywhere. All Rights Reserved.
         </div>
-        <button class="neon-btn" style="background: transparent; color: #00ffff; border: 2px solid #00ffff; margin-top: 10px; box-shadow: none; border-radius: 25px;">Install App</button>
     </div>
+
 </body>
 </html>
