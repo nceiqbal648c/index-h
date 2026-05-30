@@ -603,6 +603,277 @@ ar(--neon-cyan); background: rgba(0, 242, 254, 0.05); text-shadow: 0 0 8px rgba(
                 <button class="core-btn btn-video" id="v-btn" onclick="triggerDownload('video')">
                     <i class="fa-solid fa-video"></i> Download Video (MP4)
                 </button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ai_travelanywhere - Pro Studio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #050912;
+            --panel-bg: #09101d;
+            --neon-cyan: #00f2fe;
+            --neon-blue: #4facfe;
+            --neon-purple: #bd00ff;
+            --text-main: #ffffff;
+            --text-dim: #5c6f8a;
+            --neon-green: #00e676;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: var(--bg-dark);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            width: 100vw;
+            overflow-x: hidden;
+        }
+
+        /* 📱 সম্পূর্ণ মোবাইল স্ক্রিন ফিটিং কন্টেইনার */
+        .dashboard {
+            width: 100%;
+            max-width: 100%;
+            min-height: 100vh;
+            background: var(--panel-bg);
+            padding: 20px 16px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+        }
+
+        /* 👤 ইউজার হেডার */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-bottom: 1px solid rgba(0, 242, 254, 0.15);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .avatar-zone {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .avatar-zone i { font-size: 1.5rem; color: #fff; }
+        .profile-info { text-align: left; }
+        .brand-title { font-size: 1.25rem; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+        .user-name { color: var(--neon-cyan); font-weight: 600; margin-top: 2px; font-size: 0.88rem; }
+
+        /* 👑 শর্টকাট ইন্সটল জোন */
+        .install-guide-box {
+            background: rgba(0, 230, 118, 0.03);
+            border: 1px dashed rgba(0, 230, 118, 0.3);
+            border-radius: 12px;
+            padding: 10px;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+
+        .btn-install-trigger {
+            background: linear-gradient(135deg, #00e676, #00f2fe);
+            color: #050912;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 230, 118, 0.25);
+        }
+
+        /* 🎛️ ডাবল ট্যাব গ্রিড */
+        .hub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+        .hub-card { 
+            background: #050811; 
+            padding: 14px 10px; 
+            border-radius: 12px; 
+            border: 1px solid rgba(255, 255, 255, 0.02); 
+            font-size: 0.8rem; 
+            font-weight: 700; 
+            color: var(--text-dim); 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+            text-align: center;
+        }
+        .hub-card.active { 
+            border: 1px solid rgba(0, 242, 254, 0.3); 
+            color: var(--neon-cyan); 
+            background: rgba(0, 242, 254, 0.05); 
+            text-shadow: 0 0 8px rgba(0, 242, 254, 0.5);
+        }
+
+        /* 📥 ইনপুট ফিল্ড */
+        .input-wrapper { position: relative; display: flex; align-items: center; margin-bottom: 22px; }
+        input[type="text"] { 
+            width: 100%; 
+            padding: 16px 100px 16px 16px; 
+            box-sizing: border-box; 
+            background: #04060c; 
+            border: 1px solid rgba(0, 242, 254, 0.25); 
+            border-radius: 14px; 
+            color: #fff; 
+            font-size: 0.95rem; 
+            outline: none; 
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+        }
+        input[type="text"]:focus { border-color: var(--neon-cyan); box-shadow: 0 0 15px rgba(0, 242, 254, 0.3); }
+
+        .btn-paste { 
+            position: absolute; 
+            right: 8px; 
+            padding: 8px 14px; 
+            border: none; 
+            border-radius: 10px; 
+            background: rgba(0, 242, 254, 0.15); 
+            color: var(--neon-cyan); 
+            font-size: 0.8rem; 
+            font-weight: 700; 
+            cursor: pointer; 
+            border: 1px solid rgba(0, 242, 254, 0.2); 
+        }
+
+        /* 📊 প্রোগ্রেস বার */
+        .progress-container { 
+            background: #04060c; 
+            border-radius: 14px; 
+            padding: 15px; 
+            margin-bottom: 22px; 
+            border: 1px solid rgba(255, 255, 255, 0.01);
+        }
+        .progress-label { font-size: 0.82rem; color: var(--text-dim); display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .bar-bg { height: 8px; background: #111824; border-radius: 4px; overflow: hidden; }
+        .bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--neon-blue), var(--neon-cyan)); box-shadow: 0 0 10px var(--neon-cyan); transition: width 0.3s ease; }
+
+        /* 🚀 নিওন অ্যাকশন বাটনস */
+        .action-container { display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px; }
+        .core-btn { 
+            width: 100%; 
+            padding: 16px; 
+            border: none; 
+            border-radius: 14px; 
+            font-size: 1rem; 
+            font-weight: 700; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 10px; 
+            text-transform: uppercase;
+            color: #fff;
+        }
+        .btn-video { background: linear-gradient(135deg, #0052d4, #4364f7); box-shadow: 0 5px 15px rgba(67, 100, 247, 0.3); }
+        .btn-audio { background: linear-gradient(135deg, #6002ee, #bd00ff); box-shadow: 0 5px 15px rgba(189, 0, 255, 0.3); }
+        .core-btn:disabled { background: #121924; color: var(--text-dim); box-shadow: none; cursor: not-allowed; }
+
+        .status-logger { margin: 10px 0; font-size: 0.9rem; font-weight: 600; min-height: 22px; text-align: center; }
+        .log-loading { color: var(--neon-cyan); }
+        .log-success { color: var(--neon-green); }
+        .log-error { color: #ff007f; }
+
+        /* 📈 লাইভ সিস্টেম স্ট্যাটাস ডাটা */
+        .live-stats { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 10px; 
+            padding-top: 15px; 
+            border-top: 1px solid rgba(255, 255, 255, 0.06); 
+            margin-top: auto; 
+        }
+        .stat-node { font-size: 0.8rem; color: var(--text-dim); text-align: center; background: #04060c; padding: 10px; border-radius: 10px; }
+        .stat-node span { color: var(--neon-cyan); font-weight: 700; }
+
+        /* 📱 পপআপ ওভারলে */
+        .popup-overlay {
+            display: none;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #0f172a;
+            border: 2px solid var(--neon-cyan);
+            padding: 15px;
+            border-radius: 14px;
+            width: 250px;
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
+            z-index: 999;
+        }
+        .popup-overlay p { margin: 0 0 10px 0; font-size: 0.85rem; line-height: 1.4; color: #fff; }
+        .popup-overlay span { color: var(--neon-cyan); font-weight: 700; }
+        .btn-close-popup { background: var(--neon-cyan); border: none; color: #000; padding: 5px 12px; border-radius: 6px; font-weight: 700; font-size: 0.75rem; cursor: pointer; float: right; }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard">
+        <div class="popup-overlay" id="guide-popup">
+            <p><i class="fa-solid fa-arrow-up" style="color: var(--neon-cyan); float: right; margin-left: 10px;"></i> ওপরের ডানদিকের কোনায় <span>তিনটি ডট (⋮)</span> মেনুতে চাপ দিন।</p>
+            <p>তারপর নিচে থেকে <span>"Add to Home screen"</span> অপশনটি সিলেক্ট করলেই এটি অ্যাপ হয়ে যাবে!</p>
+            <button class="btn-close-popup" onclick="closeGuide()">Got It</button>
+        </div>
+
+        <div>
+            <div class="profile-header">
+                <div class="avatar-zone"><i class="fa-solid fa-user-gear"></i></div>
+                <div class="profile-info">
+                    <div class="brand-title">Ai_travelanywhere</div>
+                    <div class="user-name">Iqbal Ahmed</div>
+                </div>
+            </div>
+
+            <div class="install-guide-box">
+                <button class="btn-install-trigger" onclick="showInstallGuide()">
+                    <i class="fa-solid fa-mobile-screen-button"></i> Install Mobile App
+                </button>
+            </div>
+
+            <div class="hub-grid">
+                <div class="hub-card active"><i class="fa-solid fa-wand-magic-sparkles"></i> Creative Hub</div>
+                <div class="hub-card"><i class="fa-solid fa-globe"></i> Global Content</div>
+            </div>
+
+            <div class="input-wrapper">
+                <input type="text" id="stream-url" placeholder="Enter stream or video link...">
+                <button class="btn-paste" onclick="directPaste()">
+                    <i class="fa-regular fa-clipboard"></i> Paste
+                </button>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span id="progress-status">Engine Idle</span>
+                    <span id="progress-percent">0%</span>
+                </div>
+                <div class="bar-bg">
+                    <div class="bar-fill" id="bar-fill"></div>
+                </div>
+            </div>
+
+            <div class="action-container">
+                <button class="core-btn btn-video" id="v-btn" onclick="triggerDownload('video')">
+                    <i class="fa-solid fa-video"></i> Download Video (MP4)
+                </button>
                 <button class="core-btn btn-audio" id="a-btn" onclick="triggerDownload('audio')">
                     <i class="fa-solid fa-music"></i> Download Audio (MP3)
                 </button>
@@ -618,7 +889,6 @@ ar(--neon-cyan); background: rgba(0, 242, 254, 0.05); text-shadow: 0 0 8px rgba(
     </div>
 
     <script>
-        // অটো-ক্লিপবোর্ড ইন্টিগ্রেশন
         async function directPaste() {
             const inputField = document.getElementById('stream-url');
             const logger = document.getElementById('log-display');
@@ -627,16 +897,16 @@ ar(--neon-cyan); background: rgba(0, 242, 254, 0.05); text-shadow: 0 0 8px rgba(
                 if (copiedText) {
                     inputField.value = copiedText;
                     logger.className = "status-logger log-success";
-                    logger.innerHTML = "<i class='fa-solid fa-check-double'></i> Stream link integrated successfully!";
+                    logger.innerHTML = "Stream link integrated successfully!";
                     setTimeout(() => { logger.innerHTML = ""; }, 2500);
                 }
             } catch (err) {
                 logger.className = "status-logger log-error";
-                logger.innerHTML = "<i class='fa-solid fa-lock'></i> Please long-press inside box to paste link.";
+                logger.innerHTML = "Please long-press inside box to paste link.";
             }
         }
 
-        // মাল্টি-থ্রেডেড ডাউনলোড ইঞ্জিন নোড
+        // 🔗 মোবাইল টার্মাক্স (Python Back-end) কানেকশন গেটওয়ে
         function triggerDownload(type) {
             const urlTarget = document.getElementById('stream-url').value.trim();
             const vBtn = document.getElementById('v-btn');
@@ -648,64 +918,57 @@ ar(--neon-cyan); background: rgba(0, 242, 254, 0.05); text-shadow: 0 0 8px rgba(
 
             if (urlTarget === "") {
                 logger.className = "status-logger log-error";
-                logger.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Operational Error: Link field required!";
+                logger.innerHTML = "Operational Error: Link field required!";
                 return;
             }
 
             vBtn.disabled = true;
             aBtn.disabled = true;
             logger.className = "status-logger log-loading";
-            logger.innerHTML = `<i class='fa-solid fa-terminal fa-spin'></i> Injecting Python Stream Decoder...`;
+            logger.innerHTML = `Injecting Mobile Termux Engine...`;
+            bar.style.width = "40%";
+            pPercent.innerText = "40%";
+            pStatus.innerText = "Connecting to Termux...";
 
-            let currentProgress = 0;
-            pStatus.innerText = type === 'video' ? "Extracting Video Layers..." : "Encoding Audio Track...";
-            
-            const progressInterval = setInterval(() => {
-                currentProgress += Math.floor(Math.random() * 15) + 6;
-                if (currentProgress >= 95) currentProgress = 95;
-                bar.style.width = currentProgress + "%";
-                pPercent.innerText = currentProgress + "%";
-            }, 250);
-
-            setTimeout(() => {
-                clearInterval(progressInterval);
-                bar.style.width = "100%";
-                pPercent.innerText = "100%";
-                pStatus.innerText = "Core Extracted!";
-                logger.className = "status-logger log-success";
-                logger.innerHTML = `<i class='fa-solid fa-circle-check'></i> Pipeline Core Synchronized! File downloading...`;
-
-                if (urlTarget.includes("googlevideo.com")) {
-                    const downloaderNode = document.createElement('a');
-                    downloaderNode.href = urlTarget;
-                    downloaderNode.setAttribute('download', type === 'video' ? 'Ai_Travel_Video.mp4' : 'Ai_Travel_Audio.mp3');
-                    downloaderNode.target = '_blank';
-                    document.body.appendChild(downloaderNode);
-                    downloaderNode.click();
-                    document.body.removeChild(downloaderNode);
+            // 📱 লোকালহোস্টে রিকোয়েস্ট পাঠানো (টার্মাক্স সার্ভার)
+            fetch('http://127.0.0.1:5000/download', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ url: urlTarget, type: type })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status === "success") {
+                    bar.style.width = "100%";
+                    pPercent.innerText = "100%";
+                    pStatus.innerText = "Process Finished!";
+                    logger.className = "status-logger log-success";
+                    logger.innerHTML = `Success: ${data.message}`;
                 } else {
-                    window.open(urlTarget, '_blank');
+                    logger.className = "status-logger log-error";
+                    logger.innerHTML = `Termux Error: ${data.message}`;
                 }
+                resetEngine();
+            })
+            .catch(err => {
+                logger.className = "status-logger log-error";
+                logger.innerHTML = "Termux Offline! Run 'python app.py' inside Termux App.";
+                resetEngine();
+            });
 
+            function resetEngine() {
                 setTimeout(() => {
                     vBtn.disabled = false;
                     aBtn.disabled = false;
                     bar.style.width = "0%";
                     pPercent.innerText = "0%";
                     pStatus.innerText = "Engine Idle";
-                }, 2000);
-            }, 2600);
+                }, 3000);
+            }
         }
 
-        // ইন-অ্যাপ গাইডেন্স পপআপ কন্ট্রোল
-        function showInstallGuide() {
-            document.getElementById('guide-popup').style.display = 'block';
-        }
-
-        // টাইপো ফিক্স করা হয়েছে (fnction থেকে function)
-        function closeGuide() {
-            document.getElementById('guide-popup').style.display = 'none';
-        }
-    </script>
+        function showInstallGuide() { document.getElementById('guide-popup').style.display = 'block'; }
+        function closeGuide() { document.getElementById('guide-popup').style.display = 'none'; }
+    </style>
 </body>
 </html>
